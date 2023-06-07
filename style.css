@@ -1,0 +1,86 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    background-color: #000000;
+  }
+  
+  .scene {
+    min-height: 100vh;
+    perspective: 20rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .scene * {
+    position: absolute;
+    transform-style: preserve-3d;
+  }
+  
+  .container {
+    animation: rotate 80s linear infinite;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  @keyframes rotate {
+    from {
+      transform: rotateX(-25deg) rotateY(0deg);
+    }
+    to {
+      transform: rotateX(-25deg) rotateY(360deg);
+    }
+  }
+  
+  .circle {
+    --speed: 4s;
+    --size: 6rem;
+    --border: 1rem;
+    width: var(--size);
+    height: var(--size);
+    border-radius: 50%;
+    border: var(--border) solid var(--color, #fff);
+    animation: move var(--speed) ease-in-out infinite,
+      scale var(--speed) cubic-bezier(0.5, 0, 0.4, 1) infinite;
+    animation-delay: var(--delay, 0);
+  }
+  
+  .circle:nth-child(1) {
+    --color: #f00b0b;
+    --delay: 0;
+  }
+  
+  .circle:nth-child(2) {
+    --color: rgb(255, 0, 191);
+    --delay: calc(-1 / 3 * var(--speed));
+  }
+  
+  .circle:nth-child(3) {
+    --color: rgb(0, 255, 76);
+    --delay: calc(-2 / 3 * var(--speed));
+  }
+  
+  @keyframes move {
+    0% {
+      translate: 0 0 0;
+    }
+    50% {
+      translate: 0 0 6rem;
+    }
+  }
+  
+  @keyframes scale {
+    0%,
+    50% {
+      scale: 1;
+    }
+    25% {
+      scale: 0.5;
+    }
+  }
+  
